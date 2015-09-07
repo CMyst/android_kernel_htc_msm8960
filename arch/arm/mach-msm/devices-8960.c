@@ -2031,6 +2031,18 @@ static struct resource resources_qup_i2c_gsbi9[] = {
 		.end	= GSBI9_QUP_IRQ,
 		.flags	= IORESOURCE_IRQ,
 	},
+	{
+		.name	= "i2c_sda",
+		.start	= 95,
+		.end	= 95,
+		.flags	= IORESOURCE_IO,
+	},
+	{
+		.name	= "i2c_clk",
+		.start	= 96,
+		.end	= 96,
+		.flags	= IORESOURCE_IO,
+	},
 };
 
 struct platform_device msm8960_device_qup_i2c_gsbi9 = {
