@@ -45,7 +45,9 @@ endif
 
 # MSM8930
 ifeq ($(CONFIG_MACH_HTC),y)
-   zreladdr-$(CONFIG_ARCH_MSM8930)	:= 0x80608000
+   ifneq ($(CONFIG_MACH_OPERA_UL),y)
+      zreladdr-$(CONFIG_ARCH_MSM8930)	:= 0x80608000
+   endif
 else
    zreladdr-$(CONFIG_ARCH_MSM8930)	:= 0x80208000
 endif
