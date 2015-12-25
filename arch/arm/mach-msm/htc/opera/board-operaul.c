@@ -1676,6 +1676,21 @@ static int cm3629_power(int ls_or_ps, uint8_t enable)
        return 0;
 }
 
+static uint8_t cm3629_mapping_table[] = {
+	0x00, 0x03, 0x06, 0x09, 0x0C,
+	0x0F, 0x12, 0x15, 0x18, 0x1B,
+	0x1E, 0x21, 0x24, 0x27, 0x2A,
+	0x2D, 0x30, 0x33, 0x36, 0x39,
+	0x3C, 0x3F, 0x43, 0x47, 0x4B,
+	0x4F, 0x53, 0x57, 0x5B, 0x5F,
+	0x63, 0x67, 0x6B, 0x70, 0x75,
+	0x7A, 0x7F, 0x84, 0x89, 0x8E,
+	0x93, 0x98, 0x9D, 0xA2, 0xA8,
+	0xAE, 0xB4, 0xBA, 0xC0, 0xC6,
+	0xCC, 0xD3, 0xDA, 0xE1, 0xE8,
+	0xEF, 0xF6, 0xFF
+};
+
 static struct cm3629_platform_data cm36282_pdata = {
 	.model = CAPELLA_CM36282,
 	.ps_select = CM3629_PS1_ONLY,
@@ -1694,6 +1709,10 @@ static struct cm3629_platform_data cm36282_pdata = {
 	.ps_conf2_val = CM3629_PS_ITB_1 | CM3629_PS_ITR_1 |
 			CM3629_PS2_INT_DIS | CM3629_PS1_INT_DIS,
 	.ps_conf3_val = CM3629_PS2_PROL_32,
+	.dark_level = 3,
+	.dynamical_threshold = 1,
+	.mapping_table = cm3629_mapping_table,
+	.mapping_size = ARRAY_SIZE(cm3629_mapping_table),
 };
 
 static struct i2c_board_info i2c_CM36282_devices[] = {
@@ -3591,20 +3610,20 @@ static struct i2c_registry msm8960_i2c_devices[] __initdata = {
 		ARRAY_SIZE(i2c_CM36282_devices),
 	},
 #ifdef CONFIG_AMP_TFA9887
-        {
-                I2C_SURF | I2C_FFA,
-                MSM_8930_GSBI9_QUP_I2C_BUS_ID,
-                msm_i2c_gsbi9_tfa9887_info,
-                ARRAY_SIZE(msm_i2c_gsbi9_tfa9887_info),
-        },
+    {
+        I2C_SURF | I2C_FFA,
+        MSM_8930_GSBI9_QUP_I2C_BUS_ID,
+        msm_i2c_gsbi9_tfa9887_info,
+        ARRAY_SIZE(msm_i2c_gsbi9_tfa9887_info),
+    },
 #endif
 #ifdef CONFIG_AMP_RT5501
-        {
-                I2C_SURF | I2C_FFA,
-                MSM_8930_GSBI9_QUP_I2C_BUS_ID,
-                msm_i2c_gsbi9_rt5501_info,
-                ARRAY_SIZE(msm_i2c_gsbi9_rt5501_info),
-        },
+    {
+        I2C_SURF | I2C_FFA,
+        MSM_8930_GSBI9_QUP_I2C_BUS_ID,
+        msm_i2c_gsbi9_rt5501_info,
+        ARRAY_SIZE(msm_i2c_gsbi9_rt5501_info),
+    },
 #endif
 	{
 		I2C_SURF | I2C_FFA,
