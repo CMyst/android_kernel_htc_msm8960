@@ -846,7 +846,7 @@ int pwm_enable(struct pwm_device *pwm)
 			rc = pm8xxx_pwm_bank_enable(pwm, 1);
 			pm8xxx_pwm_bank_sel(pwm);
 			pm8xxx_pwm_start(pwm, 1, 0);
-#ifdef CONFIG_MACH_M4_UL
+#if defined(CONFIG_MACH_M4_UL) || defined(CONFIG_MACH_OPERA_UL)
 			rc = pm8xxx_writeb(pwm->chip->dev->parent,
 				SSBI_REG_ADDR_LPG_CTL(3),
 				pwm->pwm_lpg_ctl[3]);
