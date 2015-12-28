@@ -3371,7 +3371,7 @@ printf("Read PCBID = %x\n", system_rev);
 	strcpy(nvram_path, "/system/etc/calibration.gpio4");
 #endif
 
-#ifdef CONFIG_MACH_OPERAUL
+#ifdef CONFIG_MACH_OPERA_UL
 	if (system_rev >= XC){
 		strcpy(nvram_path, "/system/etc/calibration.gpio4");
 	}
