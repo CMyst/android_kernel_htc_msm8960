@@ -310,6 +310,11 @@ config LEDS_PM8038
 	  To compile this driver as a module, choose M here: the module will
 	  be called leds-pmic8038.
 
+config PM8038_LED_SYNC
+        tristate "Button Backlight LED Sync for Qualcomm PMIC8038"
+        depends on MFD_PM8XXX
+        help
+
 config LEDS_PCA9633
 	tristate "LED support for PCA9633 I2C chip"
 	depends on LEDS_CLASS
