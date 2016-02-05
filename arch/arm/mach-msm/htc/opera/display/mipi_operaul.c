@@ -170,7 +170,7 @@ static struct dsi_cmd_desc cabc_moving_cmds[] = {
 };
 #endif
 
-static int operaul_send_display_cmds(struct dsi_cmd_desc *cmd, int cnt)
+static int operaul_send_display_cmds(struct dsi_cmd_desc *cmd, int cnt, bool clk_ctrl)
 {
 	int ret = 0;
 	struct dcs_cmd_req cmdreq;
@@ -178,6 +178,8 @@ static int operaul_send_display_cmds(struct dsi_cmd_desc *cmd, int cnt)
 	cmdreq.cmds = cmd;
 	cmdreq.cmds_cnt = cnt;
 	cmdreq.flags = CMD_REQ_COMMIT;
+	if(clk_ctrl)
+		cmdreq.flags |= CMD_CLK_CTRL;
 	cmdreq.rlen = 0;
 	cmdreq.cb = NULL;
 
@@ -202,7 +204,7 @@ static int operaul_lcd_on(struct platform_device *pdev)
 	pinfo = &mfd->panel_info;
 	mipi  = &mfd->panel_info.mipi;
 
-	operaul_send_display_cmds(init_on_cmds, init_on_cmds_count);
+	operaul_send_display_cmds(init_on_cmds, init_on_cmds_count, false);
 
 	atomic_set(&lcd_power_state, 1);
 
@@ -228,6 +230,7 @@ static int operaul_lcd_off(struct platform_device *pdev)
 static int operaul_display_on(struct platform_device *pdev)
 {
 	struct msm_fb_data_type *mfd;
+	bool clk_ctrl;
 
 	mfd = platform_get_drvdata(pdev);
 
@@ -238,7 +241,8 @@ static int operaul_display_on(struct platform_device *pdev)
 
 	mipi_dsi_op_mode_config(DSI_CMD_MODE);
 
-	operaul_send_display_cmds(display_on_cmds, display_on_cmds_count);
+	clk_ctrl = (mfd->panel_info.type == MIPI_CMD_PANEL);
+	operaul_send_display_cmds(display_on_cmds, display_on_cmds_count,clk_ctrl);
 
 	pr_debug("%s\n", __func__);
 	return 0;
@@ -249,6 +253,7 @@ DEFINE_LED_TRIGGER(bkl_led_trigger);
 static int operaul_display_off(struct platform_device *pdev)
 {
 	struct msm_fb_data_type *mfd;
+	bool clk_ctrl;
 
 	mfd = platform_get_drvdata(pdev);
 
@@ -257,7 +262,8 @@ static int operaul_display_off(struct platform_device *pdev)
 	if (mfd->key != MFD_KEY)
 		return -EINVAL;
 
-	operaul_send_display_cmds(display_off_cmds, display_off_cmds_count);
+	clk_ctrl = (mfd->panel_info.type == MIPI_CMD_PANEL);
+	operaul_send_display_cmds(display_off_cmds, display_off_cmds_count,clk_ctrl);
 
 	if (wled_trigger_initialized)
 		led_trigger_event(bkl_led_trigger, 0);
@@ -330,6 +336,7 @@ static unsigned char operaul_shrink_pwm(int val)
 static void operaul_set_backlight(struct msm_fb_data_type *mfd)
 {
 	struct mipi_panel_info *mipi;
+	bool clk_ctrl = (mfd && mfd->panel_info.type == MIPI_CMD_PANEL);
 
 	led_pwm1[1] = operaul_shrink_pwm((unsigned char)(mfd->bl_level));
 
@@ -355,7 +362,7 @@ static void operaul_set_backlight(struct msm_fb_data_type *mfd)
 		mipi_dsi_op_mode_config(DSI_CMD_MODE);
 	}
 
-	operaul_send_display_cmds(backlight_cmds, backlight_cmds_count);
+	operaul_send_display_cmds(backlight_cmds, backlight_cmds_count,clk_ctrl);
 
 #ifdef CONFIG_BACKLIGHT_WLED_CABC
 	if (wled_trigger_initialized) {
