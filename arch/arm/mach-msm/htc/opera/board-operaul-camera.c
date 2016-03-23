@@ -829,7 +829,8 @@ static struct camera_flash_info msm_camera_sensor_ov5693_flash_info = {
 
 static struct camera_flash_cfg msm_camera_sensor_ov5693_flash_cfg = {
 	.low_temp_limit		= 5,
-	.low_cap_limit		= 15,
+	.low_cap_limit		= 14,
+    .low_cap_limit_dual = 0,
 	.flash_info			= &msm_camera_sensor_ov5693_flash_info,
 };
 
