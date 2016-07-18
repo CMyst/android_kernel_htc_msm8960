@@ -439,12 +439,10 @@ static struct msm_camera_i2c_reg_conf ov5693_recommend_settings[] = {
 	{0x3680, 0xe0},
 	{0x3681, 0x00},
 
-
 	{0x3620, 0x44},
 	{0x3621, 0xb5},
 	{0x3622, 0x0c},
 	{0x3600, 0xbc},
-
 
 	{0x3700, 0x42},
 	{0x3701, 0x14},
@@ -610,7 +608,6 @@ static struct msm_camera_i2c_reg_conf ov5693_recommend_settings[] = {
 	{0x400d, 0x00},
 	{0x4058, 0x00},
 
-
 	{0x4101, 0xb2},
 	{0x4303, 0x00},
 	{0x4304, 0x08},
@@ -680,7 +677,6 @@ static struct v4l2_subdev_info ov5693_subdev_info[] = {
 	.fmt    = 1,
 	.order    = 0,
 	},
-
 };
 
 static struct msm_camera_i2c_conf_array ov5693_init_conf[] = {
@@ -711,7 +707,6 @@ static struct msm_camera_i2c_conf_array ov5693_confs[] = {
 
 static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 	{
-
 		.x_output = 0xA20,
 		.y_output = 0x7A0,
 		.line_length_pclk = 0xade,
@@ -719,7 +714,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.vt_pixel_clk = 166400000,
 		.op_pixel_clk = 166400000,
 		.binning_factor = 1,
-
 		.x_addr_start = 0,
 		.y_addr_start = 0,
 		.x_addr_end = 0xA1F,
@@ -731,7 +725,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.binning_rawchip = 0x11,
 	},
 	{
-
 		.x_output = 0x500,
 		.y_output = 0x2D0,
 		.line_length_pclk = 0x5BE,
@@ -759,7 +752,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.vt_pixel_clk = 166400000,
 		.op_pixel_clk = 166400000,
 		.binning_factor = 1,
-
 		.x_addr_start = 0,
 		.y_addr_start = 0,
 		.x_addr_end = 0xA1F,
@@ -779,7 +771,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.vt_pixel_clk = 166400000,
 		.op_pixel_clk = 166400000,
 		.binning_factor = 1,
-
 		.x_addr_start = 0x0,
 		.y_addr_start = 0x0,
 		.x_addr_end = 0x9FF,
@@ -791,7 +782,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.binning_rawchip = 0x22,
 	},
 	{
-
 		.x_output = 0xA20,
 		.y_output = 0x5B0,
 		.line_length_pclk = 0xb4c,
@@ -799,7 +789,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.vt_pixel_clk = 166400000,
 		.op_pixel_clk = 166400000,
 		.binning_factor = 1,
-
 		.x_addr_start = 0,
 		.y_addr_start = 0,
 		.x_addr_end = 0xA1F,
@@ -811,7 +800,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.binning_rawchip = 0x11,
 	},
 	{
-
 		.x_output = 0xA20,
 		.y_output = 0x7A0,
 		.line_length_pclk = 0xade,
@@ -819,7 +807,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.vt_pixel_clk = 166400000,
 		.op_pixel_clk = 166400000,
 		.binning_factor = 1,
-
 		.x_addr_start = 0,
 		.y_addr_start = 0,
 		.x_addr_end = 0xA1F,
@@ -831,7 +818,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.binning_rawchip = 0x11,
 	},
 	{
-
 		.x_output = 0x4b0,
 		.y_output = 0x2d0,
 		.line_length_pclk = 0x5BE,
@@ -839,7 +825,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.vt_pixel_clk = 166400000,
 		.op_pixel_clk = 166400000,
 		.binning_factor = 1,
-
 		.x_addr_start = 0x0,
 		.y_addr_start = 0x0,
 		.x_addr_end = 0x95F,
@@ -851,7 +836,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.binning_rawchip = 0x22,
 	},
 	{
-
 		.x_output = 0xA20,
 		.y_output = 0x610,
 		.line_length_pclk = 0xade,
@@ -859,7 +843,6 @@ static struct msm_sensor_output_info_t ov5693_dimensions[] = {
 		.vt_pixel_clk = 166400000,
 		.op_pixel_clk = 166400000,
 		.binning_factor = 1,
-
 		.x_addr_start = 0,
 		.y_addr_start = 0,
 		.x_addr_end = 0xA1F,
@@ -957,7 +940,6 @@ static int ov5693_read_fuseid_once(void)
 	unsigned short bank_addr;
 	int count = 0, dirty = 0;
 
-
 	msm_camera_i2c_write_b(ov5693_msm_camera_i2c_client, 0x0100, 0x01);
 
 	for (i = 0; i < 5; i++) {
@@ -988,7 +970,6 @@ static int ov5693_read_fuseid_once(void)
 		}
 
 		if (dirty) {
-			OTP[0] = fuse_id[0];
 			OTP[1] = fuse_id[1];
 			OTP[2] = fuse_id[4];
 			OTP[3] = fuse_id[5];
@@ -1320,7 +1301,6 @@ int32_t ov5693_sensor_setting(struct msm_sensor_ctrl_t *s_ctrl,
 
 	rc = msm_sensor_setting(s_ctrl, update_type, res);
 	if (update_type == MSM_SENSOR_UPDATE_PERIODIC) {
-
 		rc1 = msm_camera_i2c_read_b(ov5693_s_ctrl.sensor_i2c_client, OV5693_REG_FLIP, &f_value);
 		if (rc1 < 0)
 			pr_info("%s: msm_camera_i2c_read_b 0x%x fail\n", __func__, OV5693_REG_FLIP);
@@ -1329,8 +1309,6 @@ int32_t ov5693_sensor_setting(struct msm_sensor_ctrl_t *s_ctrl,
 			pr_info("%s: msm_camera_i2c_read_b 0x%x fail\n", __func__, OV5693_REG_MIRROR);
 
 		pr_info(" f_value = 0x%x m_value = 0x%x", f_value, m_value);
-
-
 		if (sdata->sensor_platform_info->mirror_flip == CAMERA_SENSOR_MIRROR_FLIP) {
 			pr_info(" CAMERA_SENSOR_MIRROR_FLIP");
 			f_value |= 0x42;

@@ -2090,7 +2090,7 @@ static struct resource resources_qup_i2c_gsbi9[] = {
 		.end	= GSBI9_QUP_IRQ,
 		.flags	= IORESOURCE_IRQ,
 	},
-#ifdef CONFIG_MACH_ZARA
+#if defined(CONFIG_MACH_ZARA) || defined(CONFIG_MACH_OPERA_UL)
 	{
 		.name	= "i2c_sda",
 		.start	= 95,
@@ -2108,7 +2108,7 @@ static struct resource resources_qup_i2c_gsbi9[] = {
 
 struct platform_device msm8960_device_qup_i2c_gsbi9 = {
 	.name		= "qup_i2c",
-#ifdef CONFIG_MACH_ZARA
+#if defined(CONFIG_MACH_ZARA) || defined(CONFIG_MACH_OPERA_UL)
 	.id		= 9,
 #else
 	.id		= 0,

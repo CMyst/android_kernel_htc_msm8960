@@ -448,10 +448,12 @@ static struct msm_actuator_ctrl_t ov5693_act_t = {
 		.a_power_down = ov5693_actuator_af_power_down,
 		.a_create_subdevice = ov5693_act_create_subdevice,
 		.a_config = ov5693_act_config,
+#if (CONFIG_HTC_CAMERA_HAL_VERSION == 3)
 		.small_step_damping = 47,
 		.medium_step_damping = 75,
 		.big_step_damping = 100,
 		.is_af_infinity_supported = 1,
+#endif
 	},
 
 	.i2c_client = {

@@ -26,5 +26,8 @@ source "arch/arm/mach-msm/htc/m4/Kconfig"
 # ZARA
 source "arch/arm/mach-msm/htc/zara/Kconfig"
 
+# OPERA
+source "arch/arm/mach-msm/htc/opera/Kconfig"
+
 config MACH_HTC_DUMMY
 	bool "NONE (No device)"

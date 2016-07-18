@@ -1,0 +1,14 @@
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-regulator.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-gpu.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-gpiomux.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-storage.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-audio.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-mmc.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-rfkill.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-pmic.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-keypad.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-camera.o
+obj-$(CONFIG_MACH_OPERA_UL) += board-operaul-wifi.o
+obj-$(CONFIG_MACH_OPERA_UL) += display/
+CFLAGS_board-operaul-display.o += -Idrivers/video
